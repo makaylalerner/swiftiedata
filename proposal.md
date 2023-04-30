@@ -7,6 +7,9 @@ include views for her top 3 hits in that era. Additionally, there will be a summ
 ## Description of the Data
 I am using a kaggle dataset that was sourced from the Spotify API. The link for the dataset is https://www.kaggle.com/datasets/jarredpriester/taylor-swift-spotify-dataset. The dataset has the following columns: name, album, release_date, track number, id, uri, acousticness, danceability, energy, instrumentalness, liveness, loudness, speechiness, tempo, valence, popularity, and duration_ms (duration in milliseconds). Many of the columns are categorical, using an ordinal scale from 0.0 to 1.0 to describe characteristics. 
 
+## Data Cleaning and Transformations 
+Data was cleaned using Python. 24 Albums were dropped from the set to reduce duplicates and to cut out albums associated with Taylor Swift but not her actual music, such as karaoke versions and radio specials. Full list of dropped albums can be seen in the ts-metadata gsheet or ts_data_exp_clean.ipynb. For albums with multiple versions, like deluxe or platinum editions, a new column 'era' was added to classify rows by the era they will appear as on the timeline. All song titles were normalized, cutting off labels such as "Acoustic Version" or "(ft. Lana Del Ray)" etc annd removing capital letters, then grouped by the normalized song name and their eras. Numerical values were then averaged based on this grouping. 
+
 ## Usage scenarios and tasks
 While this project is primarily for fun, it will provide detailed information about Taylor Swift's music throughout her career. It can be used to find out what the top song of each of her era's was, as well as the top song of her career. It will also provide analysis comparing her albums and see how these metrics have changed since her debut in 2006. 
 
