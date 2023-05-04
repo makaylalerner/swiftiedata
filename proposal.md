@@ -27,9 +27,27 @@ The first data view will be a timeline starting at Taylor's debut album, Taylor 
 * 2021 - Taylor's Version (Ongoing) 
 * 2022 - Midnights 
 
-## Second View: Album/Era Profile
-Upon clicking on each album, the next view appears, to look at stats on the album/era level. Displays the top three hits from that album, by number of song streams. Then, it looks at the average of several attributes (to be determined) on that album/era level. A picture of Taylor performing will be displayed here, possibly with a good quote on the top before the data. 
+## Second View: Album/Era Profile 
+Upon clicking sn album cover on the timrlinr, the next view appears, to look at stats on the album/era level. Displays the top three hits from that album, by popularity index in a bar chart, ordered decreasingly. Then, it pulls a filtered view of the bubble chart, showing average metrics for that era. A picture of Taylor performing will be displayed here, possibly with a good quote on the top before the data. Allows for going forward and backward in the stack.
 
 ## Third View: Overview of Her Career 
-After clicking through the albums/eras, an overview will be presented, showing the top songs overall and overall statistics. 
+After clicking through the albums/eras, an overview will be presented, showing the top songs overall and overall statistics or possibly have a button on the profiles view to see full view, were we'll look at her top 3 songs overall and the bubble chart showing the average metrics by era in color, all of them this time, only filtered on the album/era profile. 
+
+## D3 Elements to use
+* Timneline: 
+* Bar Chart: https://observablehq.com/@d3/horizontal-bar-chart
+*   - horizontal, shows top 3 hits based on popularity by album and in the overview 
+* Bubble Chart: https://observablehq.com/@d3/bubble-chart
+*   - uses color and area to show which features are the most prominent, using color to decode eras, color chart: 
+*   Debut: #97e9c1
+*   Lover: #8a5066
+*   SpeakNow: #813c60
+*   Fearless: #d9c78f
+*   Evermore: #7e5c43
+*   Folklore: #bababa
+*   Reputation: #ffffff
+*   RED: #a02b48
+*   1989: #d6e9ff
+*   TV: #907763
+*   Midnights: #87a6bb
 
