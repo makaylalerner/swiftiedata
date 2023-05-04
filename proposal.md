@@ -39,15 +39,15 @@ After clicking through the albums/eras, an overview will be presented, showing t
 *   - horizontal, shows top 3 hits based on popularity by album and in the overview 
 * Bubble Chart: https://observablehq.com/@d3/bubble-chart
 *   - uses color and area to show which features are the most prominent, using color to decode eras, color chart: 
-*   Debut: #97e9c1
-*   Lover: #8a5066
-*   SpeakNow: #813c60
-*   Fearless: #d9c78f
-*   Evermore: #7e5c43
-*   Folklore: #bababa
-*   Reputation: #ffffff
-*   RED: #a02b48
-*   1989: #d6e9ff
-*   TV: #907763
-*   Midnights: #87a6bb
+*     - Debut: #97e9c1
+*     - Lover: #8a5066
+*     - SpeakNow: #813c60
+*     - Fearless: #d9c78f
+*     - Evermore: #7e5c43
+*     - Folklore: #bababa
+*     - Reputation: #ffffff
+*     - RED: #a02b48
+*     - 1989: #d6e9ff
+*     - TV: #907763
+*     - Midnights: #87a6bb
 
