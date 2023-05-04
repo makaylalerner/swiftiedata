@@ -34,20 +34,20 @@ Upon clicking sn album cover on the timrlinr, the next view appears, to look at 
 After clicking through the albums/eras, an overview will be presented, showing the top songs overall and overall statistics or possibly have a button on the profiles view to see full view, were we'll look at her top 3 songs overall and the bubble chart showing the average metrics by era in color, all of them this time, only filtered on the album/era profile. 
 
 ## D3 Elements to use
-* Timneline: 
+* Timneline: https://github.com/walterra/d3-milestones
 * Bar Chart: https://observablehq.com/@d3/horizontal-bar-chart
 *   - horizontal, shows top 3 hits based on popularity by album and in the overview 
 * Bubble Chart: https://observablehq.com/@d3/bubble-chart
 *   - uses color and area to show which features are the most prominent, using color to decode eras, color chart: 
-*     - Debut: #97e9c1
-*     - Lover: #8a5066
-*     - SpeakNow: #813c60
-*     - Fearless: #d9c78f
-*     - Evermore: #7e5c43
-*     - Folklore: #bababa
-*     - Reputation: #ffffff
-*     - RED: #a02b48
-*     - 1989: #d6e9ff
-*     - TV: #907763
-*     - Midnights: #87a6bb
+*     Debut: #97e9c1
+*     Lover: #8a5066
+*     SpeakNow: #813c60
+*     Fearless: #d9c78f
+*     Evermore: #7e5c43
+*     Folklore: #bababa
+*     Reputation: #ffffff
+*     RED: #a02b48
+*     1989: #d6e9ff
+*     TV: #907763
+*     Midnights: #87a6bb
 
