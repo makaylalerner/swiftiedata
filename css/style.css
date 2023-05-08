@@ -1,12 +1,23 @@
-body{
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #333;
-    background-color: #fff;
-}
+body {
+    font-family: sans-serif;
+  }
 
-.city-label {
-    font-size: 11px;
-    text-anchor: middle;
-}
+  .timeline-point {
+    fill: black;
+    stroke: none;
+  }
+
+  line,
+  text {
+    fill: black;
+    stroke: black;
+  }
+
+  .axis text {
+    font-size: 12px;
+  }
+
+  .axis line,
+  .axis path {
+    stroke-width: 1;
+  }
