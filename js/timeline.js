@@ -1,6 +1,4 @@
-d3.csv("https://gist.githubusercontent.com/makaylalerner/7e710a423a5157167c1b5b044ef85778/raw/ea194d1e0701346e62d2d5731c1dc8996a6eaa23/data_taylors_version2.csv").then((data) => {
-  createTimeline(data);
-}); 
+
 
 export function createTimeline(data) {
     const nestedData = d3.group(data, (d) => d.era);
@@ -10,18 +8,24 @@ export function createTimeline(data) {
         year: d3.min(values, (d) => new Date(d.year)),
       };
     });
+
+    // grouping to avoid overlapping 
+const yearGroup = d3.group(timelineData, (d) => d.year);
+  yearGroup.forEach((values, key) => {
+    values.forEach((d, i) => {
+      d.index = i;
+    });
+  });
   
     // Create timeline and other components
 
-  const margin = { top: 20, right: 20, bottom: 20, left: 100 };
-  const width = 500 - margin.left - margin.right;
+  const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+  const width = 300 - margin.left - margin.right;
   const height = 1000 - margin.top - margin.bottom;
 
-  const xScale = d3.scaleTime().range([0, width]);
-  const yScale = d3.scaleBand().range([0, height]);
+  const yScale = d3.scaleLinear().range([0, height]);  
 
-  xScale.domain(d3.extent(data, (d) => d.year));
-  yScale.domain(data.map((d) => d.era));
+  yScale.domain([0, timelineData.length -1]);
 
   const svg = d3
     .select("#timeline")
@@ -31,18 +35,45 @@ export function createTimeline(data) {
     .append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
+// add vertical line 
+    svg
+    .append("line")
+    .attr("x1", width / 2)
+    .attr("y1", 0)
+    .attr("x2", width / 2)
+    .attr("y2", height);
+
+// add circles along the line 
   svg
     .selectAll(".timeline-point")
-    .data(data)
+    .data(timelineData)
     .join("circle")
     .attr("class", "timeline-point")
     .attr("r", 5)
-    .attr("cx", (d) => xScale(d.year))
-    .attr("cy", (d) => yScale(d.era))
+    .attr("cx", (d) => width /2)
+    .attr("cy", (d, i) => yScale(i) + d.index*10)
     .on("click", (event, d) => {
       // Open another data view or do something else
       console.log(d); })
-      .append("g")
-      .attr("transform", `translate(0, $[height})`)
+   
+// era labels 
+svg
+    .selectAll(".era-label")
+    .data(timelineData)
+    .join("text")
+    .attr("class", "era-label")
+    .attr("x", (d) => width / 2 + 15)
+    .attr("y", (d, i) => yScale(i) + d.index * 10)
+    .text((d) => d.era);
+
+// year labels 
+svg 
+.selectAll(".year-label")
+.data(timelineData)
+.join("text")
+.attr("class", "year-label")
+.attr("x", (d) => width / 2 + 15)
+.attr("y", (d, i) => yScale(i) + 15 + d.index*10 )
+.text((d) => d3.timeFormat("%B %Y")(d.year));
 }
 

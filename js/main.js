@@ -1,5 +1,5 @@
 import { createTimeline } from './timeline.js'
 
-d3.csv("https://gist.githubusercontent.com/makaylalerner/7e710a423a5157167c1b5b044ef85778/raw/ea194d1e0701346e62d2d5731c1dc8996a6eaa23/data_taylors_version2.csv").then((data) => {
+d3.csv("https://gist.githubusercontent.com/makaylalerner/6e13282b20c8c4b11355ecd583e47f2e/raw/b7245f5122c539eafd29beb02bf6f5dea37456db/data_taylors_version2.csv").then((data) => {
   createTimeline(data);
 });
