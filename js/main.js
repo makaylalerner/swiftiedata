@@ -46,6 +46,14 @@ d3.csv(
         d3.select('#criteria-select').property('value')
     )
 
+    const getCurrentEra = () => {
+        try {
+            return d3.select('.active-era').attr('data-era');
+        } catch (_) {
+            return null
+        }
+    }
+
     const updateCriteriaCharts = (criteria, era) => {
         updateBubbleChart(criteria, era)
         updateBarChart(criteria, era)
@@ -57,7 +65,7 @@ d3.csv(
 
     d3.select('#criteria-select').on('change', function() {
         const criteria = this.value;
-        updateCriteriaCharts(criteria);
+        updateCriteriaCharts(criteria, getCurrentEra());
     });
 
     // updates bar chart when timeline point is called 

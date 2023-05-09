@@ -59,6 +59,7 @@ const yearGroup = d3.group(timelineData, (d) => d.year);
     .data(timelineData)
     .join("circle")
     .attr("class", "timeline-point")
+    .attr("data-era", (d) => d.era)
     .attr("fill", (d) => colors[d.era])
     .attr("r", 8)
     .attr("cx", width / 2)
