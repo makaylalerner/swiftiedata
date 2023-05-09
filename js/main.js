@@ -4,13 +4,13 @@ import { BubbleChart } from './bubbles.js'
 
 const eraColors = {
     Debut: "#97e9c1",
-    Lover: "#8a5066",
-    SpeakNow: "#813c60",
+    Lover: "#fda4ba",
+    SpeakNow: "#9867c5",
     Fearless: "#d9c78f",
     Evermore: "#7e5c43",
     Folklore: "#bababa",
-    Reputation: "#8a8",
-    Red: "#a02b48",
+    Reputation: "#fcecdc",
+    Red: "#d0312d",
     "1989": "#d6e9ff",
     TaylorsVersion: "#907763",
     Midnights: "#87a6bb"
