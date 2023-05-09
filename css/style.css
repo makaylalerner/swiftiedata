@@ -1,39 +1,53 @@
 body {
     font-family: sans-serif;
-  }
+}
 
-  .timeline-point {
-    fill: black;
-    stroke: none;
-  }
-
-  line,
-  text {
+line,
+text {
     fill: black;
     stroke: black;
-  }
+}
 
-  .axis text {
+.axis text {
     font-size: 12px;
-  }
+}
 
-  .axis line,
-  .axis path {
+.timeline-point {
+    stroke: black;
+    cursor: pointer;
+}
+
+.timeline-point:hover {
+    stroke: none;
+    filter: brightness(120%);
+}
+
+.timeline-point.active-era {
+    fill: white;
+    stroke: red;
+}
+
+.bar {
+    stroke: black;
+}
+
+.bubble {
+    stroke: black;
+}
+
+.axis line,
+.axis path {
     stroke-width: 1;
-  }
+}
 
-  #timeline, 
-  #bar-chart {
+#timeline, 
+#bar-chart {
     display: inline-block;
     vertical-align: top;
-  }
+}
 
-  #bar-chart {
+#bar-chart {
     margin-left: 50px;
-  }
-
-  .bar {
-    fill: pink;
 }
 
 .song-label, 

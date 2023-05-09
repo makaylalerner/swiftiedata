@@ -62,7 +62,7 @@ export function BubbleChart(data, {
     groups, // array of group names (the domain of the color scale)
     colors = d3.schemeTableau10, // an array of colors (for groups)
     fill = "#ccc", // a static fill color, if no group channel is specified
-    fillOpacity = 0.7, // the fill opacity of the bubbles
+    fillOpacity = 1, // the fill opacity of the bubbles
     stroke, // a static stroke around the bubbles
     strokeWidth, // the stroke width around the bubbles, if any
     strokeOpacity, // the stroke opacity around the bubbles, if any
@@ -112,6 +112,7 @@ export function BubbleChart(data, {
         .attr("stroke", stroke)
         .attr("stroke-width", strokeWidth)
         .attr("stroke-opacity", strokeOpacity)
+        .attr("class", "bubble")
         .attr("fill", G ? d => color(G[d.data]) : fill == null ? "none" : fill)
         .attr("fill-opacity", fillOpacity)
         .attr("r", d => d.r);
@@ -126,6 +127,7 @@ export function BubbleChart(data, {
       leaf.append("clipPath")
           .attr("id", d => `${uid}-clip-${d.data}`)
         .append("circle")
+          .attr("class", "bubble")
           .attr("r", d => d.r);
   
       leaf.append("text")

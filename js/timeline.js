@@ -1,6 +1,14 @@
 
 
-export function createTimeline(containerSelector, data) {
+export function createTimeline(
+    containerSelector,
+    data,
+    colors,
+    {
+        onSetEra,
+        onClearEra,
+    }
+) {
     const nestedData = d3.group(data, (d) => d.era);
     const timelineData = Array.from(nestedData, ([era, values]) => {
       return {
@@ -51,47 +59,46 @@ const yearGroup = d3.group(timelineData, (d) => d.year);
     .data(timelineData)
     .join("circle")
     .attr("class", "timeline-point")
-    .attr("r", 5)
-    .attr("cx", (d) => width /2)
+    .attr("fill", (d) => colors[d.era])
+    .attr("r", 8)
+    .attr("cx", width / 2)
     .attr("cy", (d, i) => yScale(i) + d.index*10)
-    .on("click", (event, d) => {
-      // Open another data view or do something else
-      console.log(d); })
+    .on("click", ({ target }, d) => {
+        if (target.classList.contains("active-era")) {
+            target.classList.remove("active-era");
+            onClearEra();
+        } else {
+            d3.selectAll(".active-era").classed("active-era", false)
+            target.classList.add("active-era");
+            onSetEra(d.era);
+        }
+    })
+    .on("mouseover", (event) => {
+        event.target.setAttribute("r", 10);
+    })
+    .on("mouseleave", (event) => {
+        event.target.setAttribute("r", 8);
+    })
    
-// era labels 
-svg
-    .selectAll(".era-label")
-    .data(timelineData)
-    .join("text")
-    .attr("class", "era-label")
-    .attr("x", (d) => width / 2 + 15)
-    .attr("y", (d, i) => yScale(i) + d.index * 10)
-    .text((d) => d.era);
-
-// year labels 
-svg 
-.selectAll(".year-label")
-.data(timelineData)
-.join("text")
-.attr("class", "year-label")
-.attr("x", (d) => width / 2 + 15)
-.attr("y", (d, i) => yScale(i) + 15 + d.index*10 )
-.text((d) => d3.timeFormat("%B %Y")(d.year));
-
-function updateTimelineCallback(onPointClick) {
+    // era labels 
     svg
-    .selectAll(".timeline-point") 
-    .data(timelineData)
-    .join("circle")
-    .attr("class", "timeline-point") 
-    .attr("r", 5)
-    .attr("cx", (d) => width / 2)
-    .attr("cy", (d, i) => yScale(i) + d.index * 10)
-    .on("click", (event, d) => {
-        onPointClick(d.era);
-    }); 
-}
+        .selectAll(".era-label")
+        .data(timelineData)
+        .join("text")
+        .attr("class", "era-label")
+        .attr("x", (d) => width / 2 + 15)
+        .attr("y", (d, i) => yScale(i) + d.index * 10)
+        .text((d) => d.era);
 
-return updateTimelineCallback; 
+    // year labels 
+    svg 
+        .selectAll(".year-label")
+        .data(timelineData)
+        .join("text")
+        .attr("class", "year-label")
+        .attr("x", (d) => width / 2 + 15)
+        .attr("y", (d, i) => yScale(i) + 15 + d.index*10 )
+        .text((d) => d3.timeFormat("%B %Y")(d.year));
+
 }
 

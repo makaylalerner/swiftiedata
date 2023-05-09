@@ -1,4 +1,4 @@
-export function createBarChart(containerSelector, data) {
+export function createBarChart(containerSelector, data, colors) {
     const margin = {top: 30, right: 60, bottom: 30, left: 10} 
     const width = 600 - margin.left - margin.right; 
     const height = 200 - margin.top - margin.bottom; 
@@ -33,14 +33,13 @@ export function createBarChart(containerSelector, data) {
         xScale.domain([0, d3.max(topSongs, (d) => d[criteria])]); 
         yScale.domain(topSongs.map((d) => d.normalized_song_name)); 
 
-        // make the bars 
-
-        console.log(criteria)
+        // make the bars
         const bars = svg.selectAll(".bar").data(topSongs, (d) => d.normalized_song_name); 
         bars
             .enter() 
             .append("rect")
             .attr("class", "bar")
+            .attr("fill", colors[era] || "#faffff")
             .merge(bars)
             .transition()
             .duration(1000)
