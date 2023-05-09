@@ -21,3 +21,22 @@ body {
   .axis path {
     stroke-width: 1;
   }
+
+  #timeline, 
+  #bar-chart {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  #bar-chart {
+    margin-left: 50px;
+  }
+
+  .bar {
+    fill: pink;
+}
+
+.song-label, 
+.value-label {
+    fill: black;
+}

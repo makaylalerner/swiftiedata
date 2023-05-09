@@ -1,6 +1,6 @@
 
 
-export function createTimeline(data) {
+export function createTimeline(containerSelector, data) {
     const nestedData = d3.group(data, (d) => d.era);
     const timelineData = Array.from(nestedData, ([era, values]) => {
       return {
@@ -8,6 +8,8 @@ export function createTimeline(data) {
         year: d3.min(values, (d) => new Date(d.year)),
       };
     });
+
+    timelineData.sort((a,b) => a.year - b.year);
 
     // grouping to avoid overlapping 
 const yearGroup = d3.group(timelineData, (d) => d.year);
@@ -75,5 +77,21 @@ svg
 .attr("x", (d) => width / 2 + 15)
 .attr("y", (d, i) => yScale(i) + 15 + d.index*10 )
 .text((d) => d3.timeFormat("%B %Y")(d.year));
+
+function updateTimelineCallback(onPointClick) {
+    svg
+    .selectAll(".timeline-point") 
+    .data(timelineData)
+    .join("circle")
+    .attr("class", "timeline-point") 
+    .attr("r", 5)
+    .attr("cx", (d) => width / 2)
+    .attr("cy", (d, i) => yScale(i) + d.index * 10)
+    .on("click", (event, d) => {
+        onPointClick(d.era);
+    }); 
+}
+
+return updateTimelineCallback; 
 }
 

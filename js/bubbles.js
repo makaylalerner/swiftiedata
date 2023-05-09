@@ -1,0 +1,179 @@
+function prepareData(data) {
+    const groupedData = d3.group(data, (d) => d.era);
+    const processedData = [];
+  
+    groupedData.forEach((values, era) => {
+      const avg = values.reduce(
+        (acc, value) => {
+          const keys = Object.keys(value);
+          keys.forEach((key) => {
+            acc[key] += parseFloat(value[key]);
+          });
+          return acc;
+        },
+        {
+          acousticness: 0,
+          danceability: 0,
+          energy: 0,
+          instrumentalness: 0,
+          liveness: 0,
+          loudness: 0,
+          speechiness: 0,
+          tempo: 0,
+          valence: 0,
+          popularity: 0,
+          duration_ms: 0,
+        }
+      );
+      const numSongs = values.length;
+      const keys = Object.keys(avg);
+      keys.forEach((key) => {
+        avg[key] /= numSongs;
+      });
+  
+      processedData.push({
+        era: era,
+        ...avg,
+      });
+    });
+  
+    return processedData;
+  }
+  export function CustomBubbleChart(data, options = {}) {
+    // Prepare the data by calculating the average value for each era.
+    const processedData = prepareData(data);
+  
+    // Set up the custom color scale.
+    const colors = {
+      "Debut": "#97e9c1",
+      "Lover": "#8a5066",
+      "SpeakNow": "#813c60",
+      "Fearless": "#d9c78f",
+      "Evermore": "#7e5c43",
+      "Folklore": "#bababa",
+      "Reputation": "#000000",
+      "Red": "#a02b48",
+      "1989": "#d6e9ff",
+      "TaylorsVersion": "#907763",
+      "Midnights": "#101D29",
+    };
+  
+    const color = d3.scaleOrdinal().domain(Object.keys(colors)).range(Object.values(colors));
+  
+    // Merge the custom color scale with the default options and the provided options.
+    const mergedOptions = {
+      ...options,
+      colors: color,
+    };
+  
+    // Call the original BubbleChart function with the processed data and merged options.
+    return BubbleChartOriginal(processedData, mergedOptions);
+  }
+  
+  // Rename the original BubbleChart function to BubbleChartOriginal.
+  const BubbleChartOriginal = function BubbleChart(data, {
+    name = ([x]) => x, // alias for label
+    label = name, // given d in data, returns text to display on the bubble
+    value = ([, y]) => y, // given d in data, returns a quantitative size
+    group, // given d in data, returns a categorical value for color
+    title, // given d in data, returns text to show on hover
+    link, // given a node d, its link (if any)
+    linkTarget = "_blank", // the target attribute for links, if any
+    width = 640, // outer width, in pixels
+    height = width, // outer height, in pixels
+    padding = 3, // padding between circles
+    margin = 1, // default margins
+    marginTop = margin, // top margin, in pixels
+    marginRight = margin, // right margin, in pixels
+    marginBottom = margin, // bottom margin, in pixels
+    marginLeft = margin, // left margin, in pixels
+    groups, // array of group names (the domain of the color scale)
+    colors = d3.schemeTableau10, // an array of colors (for groups)
+    fill = "#ccc", // a static fill color, if no group channel is specified
+    fillOpacity = 0.7, // the fill opacity of the bubbles
+    stroke, // a static stroke around the bubbles
+    strokeWidth, // the stroke width around the bubbles, if any
+    strokeOpacity, // the stroke opacity around the bubbles, if any
+  } = {}) {
+    // Compute the values.
+    const D = d3.map(data, d => d);
+    const V = d3.map(data, value);
+    const G = group == null ? null : d3.map(data, group);
+    const I = d3.range(V.length).filter(i => V[i] > 0);
+  
+    // Unique the groups.
+    if (G && groups === undefined) groups = I.map(i => G[i]);
+    groups = G && new d3.InternSet(groups);
+  
+    // Construct scales.
+    const color = G && d3.scaleOrdinal(groups, colors);
+  
+    // Compute labels and titles.
+    const L = label == null ? null : d3.map(data, label);
+    const T = title === undefined ? L : title == null ? null : d3.map(data, title);
+  
+    // Compute layout: create a 1-deep hierarchy, and pack it.
+    const root = d3.pack()
+        .size([width - marginLeft - marginRight, height - marginTop - marginBottom])
+        .padding(padding)
+      (d3.hierarchy({children: I})
+        .sum(i => V[i]));
+  
+    const svg = d3.create("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("viewBox", [-marginLeft, -marginTop, width, height])
+        .attr("style", "max-width: 100%; height: auto; height: intrinsic;")
+        .attr("fill", "currentColor")
+        .attr("font-size", 10)
+        .attr("font-family", "sans-serif")
+        .attr("text-anchor", "middle");
+  
+    const leaf = svg.selectAll("a")
+      .data(root.leaves())
+      .join("a")
+        .attr("xlink:href", link == null ? null : (d, i) => link(D[d.data], i, data))
+        .attr("target", link == null ? null : linkTarget)
+        .attr("transform", d => `translate(${d.x},${d.y})`);
+  
+    leaf.append("circle")
+        .attr("stroke", stroke)
+        .attr("stroke-width", strokeWidth)
+        .attr("stroke-opacity", strokeOpacity)
+        .attr("fill", G ? d => color(G[d.data]) : fill == null ? "none" : fill)
+        .attr("fill-opacity", fillOpacity)
+        .attr("r", d => d.r);
+  
+    if (T) leaf.append("title")
+        .text(d => T[d.data]);
+  
+    if (L) {
+      // A unique identifier for clip paths (to avoid conflicts).
+      const uid = `O-${Math.random().toString(16).slice(2)}`;
+  
+      leaf.append("clipPath")
+          .attr("id", d => `${uid}-clip-${d.data}`)
+        .append("circle")
+          .attr("r", d => d.r);
+  
+      leaf.append("text")
+          .attr("clip-path", d => `url(${new URL(`#${uid}-clip-${d.data}`, location)})`)
+        .selectAll("tspan")
+        .data(d => `${L[d.data]}`.split(/\n/g))
+        .join("tspan")
+          .attr("x", 0)
+          .attr("y", (d, i, D) => `${i - D.length / 2 + 0.85}em`)
+          .attr("fill-opacity", (d, i, D) => i === D.length - 1 ? 0.7 : null)
+          .text(d => d);
+    }
+  
+    return Object.assign(svg.node(), {scales: {color}});
+  }/* Copy the original BubbleChart function code here. */;
+  
+  // Call the modified BubbleChart function with your data.
+  const chart = BubbleChart(data, {
+    name: (d) => d.era,
+    value: (d) => d.popularity,
+    group: (d) => d.era,
+    // ...other options
+  });

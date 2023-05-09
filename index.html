@@ -3,12 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vertical Timeline</title>
+  <title>Taylor Swift's Eras</title>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div id="timeline"></div>
+ <script type="module" src="js/main.js"></script>
+
+  <div id="timeline" style="display: inline-block;"></div>
+  <div id="bar-chart-container" style="display: inline-block;">
+    <div>
+        <label for="criteria-select">select:</label>
+        <select id="criteria-select">
+            <option value = "popularity"> popularity</option>
+            <option value = "danceability">danceability</option>
+            <option value = "energy">energy</option>
+        </select>
+    </div>
+    <div>
+        <label for="era-slider"> era: </label>
+        <input type="range" id="era-slider" name="era-slider" min="0" max="1" step="1" value="0">
+        <span id="era-label">all</span>
+    </div>
+    <div id="bar-chart"></div>
+    <div id="bubble-chart-container"></div>
+</div>
   <script type="module" src="js/main.js"></script>
+
 </body>
 </html>
