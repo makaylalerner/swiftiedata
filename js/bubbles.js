@@ -38,40 +38,12 @@ function prepareData(data) {
     });
   
     return processedData;
-  }
-  export function CustomBubbleChart(data, options = {}) {
-    // Prepare the data by calculating the average value for each era.
-    const processedData = prepareData(data);
-  
-    // Set up the custom color scale.
-    const colors = {
-      "Debut": "#97e9c1",
-      "Lover": "#8a5066",
-      "SpeakNow": "#813c60",
-      "Fearless": "#d9c78f",
-      "Evermore": "#7e5c43",
-      "Folklore": "#bababa",
-      "Reputation": "#000000",
-      "Red": "#a02b48",
-      "1989": "#d6e9ff",
-      "TaylorsVersion": "#907763",
-      "Midnights": "#101D29",
-    };
-  
-    const color = d3.scaleOrdinal().domain(Object.keys(colors)).range(Object.values(colors));
-  
-    // Merge the custom color scale with the default options and the provided options.
-    const mergedOptions = {
-      ...options,
-      colors: color,
-    };
-  
-    // Call the original BubbleChart function with the processed data and merged options.
-    return BubbleChartOriginal(processedData, mergedOptions);
-  }
-  
-  // Rename the original BubbleChart function to BubbleChartOriginal.
-  const BubbleChartOriginal = function BubbleChart(data, {
+}
+
+// Copyright 2021 Observable, Inc.
+// Released under the ISC license.
+// https://observablehq.com/@d3/bubble-chart
+export function BubbleChart(data, {
     name = ([x]) => x, // alias for label
     label = name, // given d in data, returns text to display on the bubble
     value = ([, y]) => y, // given d in data, returns a quantitative size
@@ -168,12 +140,4 @@ function prepareData(data) {
     }
   
     return Object.assign(svg.node(), {scales: {color}});
-  }/* Copy the original BubbleChart function code here. */;
-  
-  // Call the modified BubbleChart function with your data.
-  const chart = BubbleChart(data, {
-    name: (d) => d.era,
-    value: (d) => d.popularity,
-    group: (d) => d.era,
-    // ...other options
-  });
+  }

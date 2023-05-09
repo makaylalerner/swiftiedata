@@ -12,21 +12,34 @@ d3.csv(
     ).then((data) => {
     const updateTimeline = createTimeline('#timeline', data); 
     const updateBarChart = createBarChart('#bar-chart', data); 
-    const chart = BubbleChart(data, {
-        name: (d) => d.era, 
-        value: (d) => d.popularity, 
-        group: (d) => d.era
-    })
+    
+    const updateBubbleChart = (criteria) => {
+        const chart = BubbleChart(data, {
+            name: (d) => d[criteria], 
+            value: (d) => d.popularity, 
+            group: (d) => d.era
+        })
+        const el = d3.select('#bubble-chart-container')
+        console.log(el)
+
+        document.getElementById("bubble-chart-container").innerHTML = ''
+        document.getElementById("bubble-chart-container").appendChild(chart);
+    }
+
+    const updateCriteriaCharts = (criteria) => {
+        updateBubbleChart(criteria)
+        updateBarChart(criteria)
+    }
+
 
     // init bar chart using popularity as default 
-
-    updateBarChart('popularity'); 
+    updateCriteriaCharts('#popularity')
 
     // event listener for dropdown menu
 
     d3.select('#criteria-select').on('change', function() {
         const criteria = this.value;
-        updateBarChart(criteria);
+        updateCriteriaCharts(criteria);
     }); 
 
     // event listener for slider 
@@ -34,7 +47,7 @@ d3.csv(
     d3.select('#era-slider').on('input', function() {
         const eraIndex = +this.value; 
         const era = eraIndex > 0 ? data[eraIndex - 1].era : null; 
-        updateBarChart(d3.select('#criteria-select').value, era); 
+        updateCriteriaCharts(d3.select('#criteria-select').value, era); 
 
     d3.select('#era-label').text(era ? era : 'All'); 
     }); 
@@ -45,9 +58,6 @@ d3.csv(
         const selectedIndex = data.findIndex((d) => d.era === era); 
         d3.select('#era-slider').property('value', selectedIndex + 1); 
         d3.select('#era-label').text(era); 
-        updateBarChart('popularity', era); 
+        updateCriteriaCharts('popularity', era); 
     });
-
-    document.getElementById("bubble-chart-container").appendChild(chart);
-
 });
