@@ -29,9 +29,9 @@ d3.csv(
         const chart = BubbleChart(
             data.filter((d) => (era) ? d.era === era : true),
             {
-                name: (d) => parseFloat(d[criteria]).toFixed(2),
+                label: (d) => (era) ? `${d.normalized_song_name}\n${parseFloat(d[criteria]).toFixed(3)}` : parseFloat(d[criteria]).toFixed(2),
                 title: (d) => d.normalized_song_name,
-                value: (d) => d.popularity, 
+                value: (d) => parseFloat(d[criteria]), 
                 group: (d) => d.era,
                 groups: Object.keys(eraColors),
                 colors: Object.values(eraColors),
