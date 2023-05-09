@@ -29,7 +29,7 @@ const yearGroup = d3.group(timelineData, (d) => d.year);
   
     // Create timeline and other components
 
-  const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+  const margin = { top: 20, right: 30, bottom: 20, left: 0 };
   const width = 300 - margin.left - margin.right;
   const height = 1000 - margin.top - margin.bottom;
 

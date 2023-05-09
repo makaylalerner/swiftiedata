@@ -37,7 +37,7 @@ d3.csv(
                 colors: Object.values(eraColors),
             }
         )
-        const el = document.getElementById("bubble-chart-container")
+        const el = document.getElementById("bubble-chart")
         el.innerHTML = ''
         el.appendChild(chart);
     }

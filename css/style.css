@@ -40,6 +40,30 @@ text {
     stroke-width: 1;
 }
 
+#timeline-container {
+    overflow-y: scroll;
+    overflow-x: clip;
+    height: 100%;
+}
+
+#charts-container {
+    height: 93.5vh;
+}
+
+#control-container {
+    height: 6vh;
+}
+
+#bar-chart-container {
+    height: 35%;
+}
+
+#side-container {
+    overflow-y: auto;
+    overflow-x: clip;
+    height: 100%;
+}
+
 #timeline, 
 #bar-chart {
     display: inline-block;
