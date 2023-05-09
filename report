@@ -1,0 +1,23 @@
+# Data Analysis of Taylor Swift's Eras
+## Overview and Motivation 
+Taylor Swift is one of the most famouse popstars today and is known fro experimenting with new music styles. Using data from Spotify, this project follows Taylor through her albums and compares metrics of popularity, danceability, energy, liveness, speechiness, valence, and tempo.  
+## Goals and Tasks 
+The main goal of this visualization is to have fun exploring data on a topic that is interesting to me. Usage scenarios for this project is comparing metrics between Taylor's songs and albums. It allows us to see how her songs compare to one another on both the album and career side. The questions you can answer with this visualization is what are Taylor's most popular songs, most danceable songs, most energetic songs, most live songs, most speechy songs, most valent songs, and most tempic songs. 
+
+* Taylor Swift's most popular song is "Dont Blame Me". 
+* Taylor Swift's most danceable song is "I Think He Knows"
+* Taylor Swift's most energetic song is "I'm Only Me When I'm With You"
+* Taylor Swift's most live song is "Karma" 
+* Taylor Swift's most speechy song is "I Forgot That You Existed" 
+* Taylor Swift's most valent song is "Shake It Off" 
+* Taylor Swift's most tempic song is "Soon You'll Get Better"
+
+## Data
+The data used is sourced from a Kaggle dataset that pulled Spotify data for music from Taylor Swift. The data was cleaned in Python to exclude duplicates, karaoke versions, and radio specials. Then, as several albums are available in multiple versions, like deluxe or platnium editions, a new column called "era" was used to group unique songs. Song names were normalized to group them together, cutting off labels such as "acoustic version" or "ft. Lana Del Ray", and removing capital letters to account for re-releases with different punctuation. Then average metrics were used to aggregate the data across albums with multiple version. 
+
+Description of attributes, provided by Spotify: 
+* accousticness: confidence measure from 0-1 determining if a song is acoustic. 1.0 is high confidence and 0 is very low confidence 
+* danceability: determines how danceable a song is based on musical elements like tempo, rhytm stability, beat strength, and regularity. 0 is least danceable and 1.0 is most danceable. 
+* duration_ms: shows the length of the song in milliseconds 
+* energy: represents a perceptual measure of intensity and activity, quantifying how fast, loud, or noisy a track is, 0.0 to 1.0, with 1 being most energetic. 
+https://developer.spotify.com/documentation/web-api/reference/get-several-audio-features
