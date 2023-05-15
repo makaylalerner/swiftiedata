@@ -17,7 +17,38 @@ The data used is sourced from a Kaggle dataset that pulled Spotify data for musi
 
 Description of attributes, provided by Spotify: 
 * accousticness: confidence measure from 0-1 determining if a song is acoustic. 1.0 is high confidence and 0 is very low confidence 
-* danceability: determines how danceable a song is based on musical elements like tempo, rhytm stability, beat strength, and regularity. 0 is least danceable and 1.0 is most danceable. 
-* duration_ms: shows the length of the song in milliseconds 
+* danceability: determines how danceable a song is based on musical elements like tempo, rhythm stability, beat strength, and regularity. 0 is least danceable and 1.0 is most danceable. 
+* duration_ms: shows the length of the song in milliseconds. 
 * energy: represents a perceptual measure of intensity and activity, quantifying how fast, loud, or noisy a track is, 0.0 to 1.0, with 1 being most energetic. 
-https://developer.spotify.com/documentation/web-api/reference/get-several-audio-features
+* instrumentalness: predictor of the amount of vocals or spoken words, 0.0 to 1.0, with 1 being high confidence of instrumentalness. 
+* liveness: detects presence of an audience in the recording, 0.0 to 1.0, with values above 0.8 corresponding with high likelihood that the track was performed live.
+* loudness: overall average loudness in decibels, ranging from -60 and 0 db
+* speechiness: detects spoken words in a track, more exclusively speechlike tracks such as audiobooks or podcasts will have speechiness values closer to 1.0
+* tempo: overall estimated tempo of a track in beats per minute, positive numbers from 0 up
+* valence: measure describing the musical positiveness conveyed in a track; higher values correlate with happy-sounding songs and lower values correlate with sad-sounding songs. 
+
+Source: https://developer.spotify.com/documentation/web-api/reference/get-several-audio-features
+
+## Visualization Designs 
+# Timeline (Innovative View) 
+The first view in this visualization app is a vertical timeline, displaying a list of Taylor Swift's Eras with accompanying timestamps for release dates. The timeline is also used as a legend and navigation for other views 
+on the page. The dots next to eras correspond with colors seen in the visualizations and the dots are clickable to look at other era levels or click again to see an overview. I decided to use the timeline because it is not 
+only displaying data, but it was easy to use as a way to manipulate the other charts without sacrificing the overall design of the page. This visualization utilizes circles as marks along the timeline and labels for years. 
+Color is used as a channel here to separate the eras and to correlate this view with the other views. The code developed for creating this timeline was novel but used inspiration from https://github.com/walterra/d3-milestones. 
+# Bar Chart 
+The second view displays the top three songs overall when an era is not selected, and filters to just the era when the era has been selected on the timeline. I used the barchart because of the way it loads into the page when
+an era or criteria is selected, and allows space for song titles to be displayed within the visualization, creating a more pleasant experience across the site. This visualization is interactive and changes with the drop-down
+menu above it to select different attributes from the set. This visualization takes advantage of filter and sorting functions to change based on input. Bars and text are used as marks and this visualization uses color and bar
+length as information channels. This barchart was inspired by Observable's horizontal barchart: https://github.com/walterra/d3-milestones. 
+# Bubble Chart 
+The third view displays a bubble chart where circles are color coated by their era and the area of the circles is scaled and changes based on a selected criteria from the drop-down menu. This visualization is interactive 
+in a similar fashion as the barchart and was chosen for its appearance and easy way to compare using area. Circles and text are used as marks in this visualization, and information is channeled by color and area of the circles. 
+This chart was inspired by Observable's Circle Packing or Bubble Chart: https://observablehq.com/@d3/bubble-chart.
+
+## Visualization Results 
+# Timeline
+
+
+# Bar Chart
+
+# Bubble Chart
