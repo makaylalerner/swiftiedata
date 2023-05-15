@@ -31,19 +31,12 @@ Source: https://developer.spotify.com/documentation/web-api/reference/get-severa
 
 ## Visualization Designs 
 # Timeline (Innovative View) 
-The first view in this visualization app is a vertical timeline, displaying a list of Taylor Swift's Eras with accompanying timestamps for release dates. The timeline is also used as a legend and navigation for other views 
-on the page. The dots next to eras correspond with colors seen in the visualizations and the dots are clickable to look at other era levels or click again to see an overview. I decided to use the timeline because it is not 
-only displaying data, but it was easy to use as a way to manipulate the other charts without sacrificing the overall design of the page. This visualization utilizes circles as marks along the timeline and labels for years. 
-Color is used as a channel here to separate the eras and to correlate this view with the other views. The code developed for creating this timeline was novel but used inspiration from https://github.com/walterra/d3-milestones. 
+The first view in this visualization app is a vertical timeline, displaying a list of Taylor Swift's Eras with accompanying timestamps for release dates. The timeline is also used as a legend and navigation for other views on the page. The dots next to eras correspond with colors seen in the visualizations and the dots are clickable to look at other era levels or click again to see an overview. I decided to use the timeline because it is not only displaying data, but it was easy to use as a way to manipulate the other charts without sacrificing the overall design of the page. This visualization utilizes circles as marks along the timeline and labels for years. Color is used as a channel here to separate the eras and to correlate this view with the other views. The code developed for creating this timeline was novel but used inspiration from https://github.com/walterra/d3-milestones. 
 # Bar Chart 
-The second view displays the top three songs overall when an era is not selected, and filters to just the era when the era has been selected on the timeline. I used the barchart because of the way it loads into the page when
-an era or criteria is selected, and allows space for song titles to be displayed within the visualization, creating a more pleasant experience across the site. This visualization is interactive and changes with the drop-down
-menu above it to select different attributes from the set. This visualization takes advantage of filter and sorting functions to change based on input. Bars and text are used as marks and this visualization uses color and bar
-length as information channels. This barchart was inspired by Observable's horizontal barchart: https://github.com/walterra/d3-milestones. 
+The second view displays the top three songs overall when an era is not selected, and filters to just the era when the era has been selected on the timeline. I used the barchart because of the way it loads into the page when an era or criteria is selected, and allows space for song titles to be displayed within the visualization, creating a more pleasant experience across the site. This visualization is interactive and changes with the drop-down menu above it to select different attributes from the set. This visualization takes advantage of filter and sorting functions to change based on input. Bars and text are used as marks and this visualization uses color and bar length as information channels. This barchart was inspired by Observable's horizontal barchart: https://github.com/walterra/d3-milestones. 
 # Bubble Chart 
 The third view displays a bubble chart where circles are color coated by their era and the area of the circles is scaled and changes based on a selected criteria from the drop-down menu. This visualization is interactive 
-in a similar fashion as the barchart and was chosen for its appearance and easy way to compare using area. Circles and text are used as marks in this visualization, and information is channeled by color and area of the circles. 
-This chart was inspired by Observable's Circle Packing or Bubble Chart: https://observablehq.com/@d3/bubble-chart.
+in a similar fashion as the barchart and was chosen for its appearance and easy way to compare using area. Circles and text are used as marks in this visualization, and information is channeled by color and area of the circles. This chart was inspired by Observable's Circle Packing or Bubble Chart: https://observablehq.com/@d3/bubble-chart.
 
 ## Visualization Results 
 # Timeline
