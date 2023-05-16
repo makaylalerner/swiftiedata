@@ -12,7 +12,7 @@ The main goal of this visualization is to have fun exploring data on a topic tha
 * Taylor Swift's most valent song is "Shake It Off" 
 * Taylor Swift's most tempic song is "Soon You'll Get Better"
 ## Data
-The data used is sourced from a Kaggle dataset that pulled Spotify data for music from Taylor Swift. The data was cleaned in Python to exclude duplicates, karaoke versions, and radio specials. Then, as several albums are available in multiple versions, like deluxe or platnium editions, a new column called "era" was used to group unique songs. Song names were normalized to group them together, cutting off labels such as "acoustic version" or "ft. Lana Del Ray", and removing capital letters to account for re-releases with different punctuation. Then average metrics were used to aggregate the data across albums with multiple version. 
+The data used is sourced from a Kaggle dataset that pulled Spotify data for music from Taylor Swift. The data was cleaned in Python to exclude duplicates, karaoke versions, and radio specials (see ts_data_exp_clean.ipynb for more details). Then, as several albums are available in multiple versions, like deluxe or platnium editions, a new column called "era" was used to group unique songs. Song names were normalized to group them together, cutting off labels such as "acoustic version" or "ft. Lana Del Ray", and removing capital letters to account for re-releases with different punctuation. Then average metrics were used to aggregate the data across albums with multiple version. 
 Description of attributes, provided by Spotify: 
 * accousticness: confidence measure from 0-1 determining if a song is acoustic. 1.0 is high confidence and 0 is very low confidence 
 * danceability: determines how danceable a song is based on musical elements like tempo, rhythm stability, beat strength, and regularity. 0 is least danceable and 1.0 is most danceable. 
@@ -24,16 +24,17 @@ Description of attributes, provided by Spotify:
 * speechiness: detects spoken words in a track, more exclusively speechlike tracks such as audiobooks or podcasts will have speechiness values closer to 1.0
 * tempo: overall estimated tempo of a track in beats per minute, positive numbers from 0 up
 * valence: measure describing the musical positiveness conveyed in a track; higher values correlate with happy-sounding songs and lower values correlate with sad-sounding songs. 
-Source: https://developer.spotify.com/documentation/web-api/reference/get-several-audio-features
+
+Source: Spotify
 
 ## Visualizations 
 ### Timeline (Innovative View) 
-The first view in this visualization app is a vertical timeline, displaying a list of Taylor Swift's Eras with accompanying timestamps for release dates. The timeline is also used as a legend and navigation for other views on the page. The dots next to eras correspond with colors seen in the visualizations and the dots are clickable to look at other era levels or click again to see an overview. I decided to use the timeline because it is not only displaying data, but it was easy to use as a way to manipulate the other charts without sacrificing the overall design of the page. This visualization utilizes circles as marks along the timeline and labels for years. Color is used as a channel here to separate the eras and to correlate this view with the other views. The code developed for creating this timeline was novel but used inspiration from https://github.com/walterra/d3-milestones. 
+The first view in this visualization app is a vertical timeline, displaying a list of Taylor Swift's Eras with accompanying timestamps for release dates. The timeline is also used as a legend and navigation for other views on the page. The dots next to eras correspond with colors seen in the visualizations and the dots are clickable to look at other era levels or click again to see an overview. I decided to use the timeline because it is not only displaying data, but it was easy to use as a way to manipulate the other charts without sacrificing the overall design of the page. This visualization utilizes circles as marks along the timeline and labels for years. Color is used as a channel here to separate the eras and to correlate this view with the other views. The code developed for creating this timeline was novel but used inspiration from d3 milestones project from walterra on GitHub, linked below. 
 ### Bar Chart 
-The second view displays the top three songs overall when an era is not selected, and filters to just the era when the era has been selected on the timeline. I used the barchart because of the way it loads into the page when an era or criteria is selected, and allows space for song titles to be displayed within the visualization, creating a more pleasant experience across the site. This visualization is interactive and changes with the drop-down menu above it to select different attributes from the set. This visualization takes advantage of filter and sorting functions to change based on input. Bars and text are used as marks and this visualization uses color and bar length as information channels. This barchart was inspired by Observable's horizontal barchart: https://github.com/walterra/d3-milestones. 
+The second view displays the top three songs overall when an era is not selected, and filters to just the era when the era has been selected on the timeline. I used the barchart because of the way it loads into the page when an era or criteria is selected, and allows space for song titles to be displayed within the visualization, creating a more pleasant experience across the site. This visualization is interactive and changes with the drop-down menu above it to select different attributes from the set. This visualization takes advantage of filter and sorting functions to change based on input. Bars and text are used as marks and this visualization uses color and bar length as information channels. This barchart was inspired by Observable's horizontal barchart, linked below.  
 ### Bubble Chart 
 The third view displays a bubble chart where circles are color coated by their era and the area of the circles is scaled and changes based on a selected criteria from the drop-down menu. This visualization is interactive 
-in a similar fashion as the barchart and was chosen for its appearance and easy way to compare using area. Circles and text are used as marks in this visualization, and information is channeled by color and area of the circles. This chart was inspired by Observable's Circle Packing or Bubble Chart: https://observablehq.com/@d3/bubble-chart.
+in a similar fashion as the barchart and was chosen for its appearance and easy way to compare using area. Circles and text are used as marks in this visualization, and information is channeled by color and area of the circles. This chart was inspired by Observable's Circle Packing or Bubble Chart, linked below. 
 ## Visualization Results 
 The timeline will always be present on the page, serving as a visualization, navigation, and a legend for other elements. The default state is presented here with no era selected: <br></br>
 ![Full Timeline Unclicked](timeline.png) 
@@ -57,3 +58,11 @@ When a criteria is selected from the drop-down menu:  <br></br>
  <br></br>
  
 Choosing a new criteria to look at from the drop-down menu will change both the bar and bubble charts to align with the new values selected. Era selection is not reset with criteria, so changing to another era or back to the overview will retain the criteria selection. For example, if I look at speechiness criteria on the Lover era and then switch to Folklore, the criteria will remain but the values will change. 
+
+## Resources 
+- Spotify API: https://developer.spotify.com/documentation/web-api/reference/get-several-audio-features 
+- Kaggle Dataset: https://www.kaggle.com/datasets/jarredpriester/taylor-swift-spotify-dataset
+- D3 milestones:  https://github.com/walterra/d3-milestones 
+- Observable Horizontal Bar Chart: https://observablehq.com/@d3/horizontal-bar-chart
+- Observable Bubble Chart:  https://observablehq.com/@d3/bubble-chart
+
