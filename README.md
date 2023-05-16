@@ -37,7 +37,7 @@ in a similar fashion as the barchart and was chosen for its appearance and easy 
 ## Visualization Results 
 The timeline will always be present on the page, serving as a visualization, navigation, and a legend for other elements. The default state is presented here with no era selected: 
 ![Full Timeline Unclicked](timeline.png) 
- 
+ <br></br>
 With no era or criteria selected, the bar chart and bubble chart show popularity across every song. The barchart shows the top 3 most popular songs: 
 ![Default Barchart](barchart_all.png)
 
