@@ -35,25 +35,25 @@ The second view displays the top three songs overall when an era is not selected
 The third view displays a bubble chart where circles are color coated by their era and the area of the circles is scaled and changes based on a selected criteria from the drop-down menu. This visualization is interactive 
 in a similar fashion as the barchart and was chosen for its appearance and easy way to compare using area. Circles and text are used as marks in this visualization, and information is channeled by color and area of the circles. This chart was inspired by Observable's Circle Packing or Bubble Chart: https://observablehq.com/@d3/bubble-chart.
 ## Visualization Results 
-### The timeline will always be present on the page, serving as a visualization, navigation, and a legend for other elements. The default state is presented here with no era selected: <br></br>
+The timeline will always be present on the page, serving as a visualization, navigation, and a legend for other elements. The default state is presented here with no era selected: <br></br>
 ![Full Timeline Unclicked](timeline.png) 
  <br></br>
-### With no era or criteria selected, the bar chart and bubble chart show popularity across every song. The barchart shows the top 3 most popular songs over all albums by default:  <br></br>
+With no era or criteria selected, the bar chart and bubble chart show popularity across every song. The barchart shows the top 3 most popular songs over all albums by default:  <br></br>
 ![Default Barchart](barchart_all.png)
  <br></br>
 
-### The default and all-career bubble chart provide hover labels for each song, where area and value are set to popularity:  <br></br>
+The default and all-career bubble chart provide hover labels for each song, where area and value are set to popularity:  <br></br>
 ![Default Bubble with Hover](all_bubble_hover.png) 
  <br></br>
 
-### When an era is selected, all three elements of the visualization change as shown here:  <br></br>
+When an era is selected, all three elements of the visualization change as shown here:  <br></br>
 ![Era Profile](era_selected.png) 
  <br></br>
 
-### When an era is selected on the timeline, the color of the corresponding dot switches to white with a red outline. Clicking the dot again will return it to its original color and reset the charts to the all-career views. The bar and bubble charts are then filtered to show only songs from that era and maintain the color channel throughout.  <br></br>
+When an era is selected on the timeline, the color of the corresponding dot switches to white with a red outline. Clicking the dot again will return it to its original color and reset the charts to the all-career views. The bar and bubble charts are then filtered to show only songs from that era and maintain the color channel throughout.  <br></br>
 
-### When a criteria is selected from the drop-down menu:  <br></br>
+When a criteria is selected from the drop-down menu:  <br></br>
 ![Criteria Options](criteria_select.png) 
  <br></br>
  
-### Choosing a new criteria to look at from the drop-down menu will change both the bar and bubble charts to align with the new values selected. Era selection is not reset with criteria, so changing to another era or back to the overview will retain the criteria selection. For example, if I look at speechiness criteria on the Lover era and then switch to Folklore, the criteria will remain but the values will change. 
+Choosing a new criteria to look at from the drop-down menu will change both the bar and bubble charts to align with the new values selected. Era selection is not reset with criteria, so changing to another era or back to the overview will retain the criteria selection. For example, if I look at speechiness criteria on the Lover era and then switch to Folklore, the criteria will remain but the values will change. 
