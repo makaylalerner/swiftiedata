@@ -1,7 +1,7 @@
 # swiftiedata
 # Data Analysis of Taylor Swift's Eras
 ## Overview and Motivation 
-Taylor Swift is one of the most famouse popstars today and is known fro experimenting with new music styles. Using data from Spotify, this project follows Taylor through her albums and compares metrics of popularity, danceability, energy, liveness, speechiness, valence, and tempo.  
+Taylor Swift is one of the most famous popstars today and is known fro experimenting with new music styles. Using data from Spotify, this project follows Taylor through her albums and compares metrics of popularity, danceability, energy, liveness, speechiness, valence, and tempo.  
 ## Goals and Tasks 
 The main goal of this visualization is to have fun exploring data on a topic that is interesting to me. Usage scenarios for this project is comparing metrics between Taylor's songs and albums. It allows us to see how her songs compare to one another on both the album and career side. The questions you can answer with this visualization is what are Taylor's most popular songs, most danceable songs, most energetic songs, most live songs, most speechy songs, most valent songs, and most tempic songs. 
 * Taylor Swift's most popular song is "Dont Blame Me". 
